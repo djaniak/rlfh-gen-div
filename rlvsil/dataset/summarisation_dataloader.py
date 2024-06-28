@@ -14,8 +14,8 @@ from torch.utils.data import DataLoader
 from transformers import (DataCollatorForTokenClassification,
                           DataCollatorWithPadding)
 
-from dataset.summarisation_feedback_dataloader import tokenize as rf_tokenize
-from dataset.summarisation_formatting import (make_filtered_dataset,
+from rlvsil.dataset.summarisation_feedback_dataloader import tokenize as rf_tokenize
+from rlvsil.dataset.summarisation_formatting import (make_filtered_dataset,
                                               make_input_example_cnndm,
                                               make_input_example_tldr,
                                               make_rf_input_example_tldr)

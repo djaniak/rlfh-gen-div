@@ -9,7 +9,7 @@ LICENSE file in the root directory of this source tree.
 from dataclasses import dataclass, field
 from typing import Optional
 
-from dataset.summarisation_formatting import SUBREDDITS
+from rlvsil.dataset.summarisation_formatting import SUBREDDITS
 
 
 @dataclass
@@ -19,7 +19,7 @@ class Args:
     wandb_run_name: Optional[str] = field(default=None)
     wandb_project: Optional[str] = field(default=None)
     wandb_group: Optional[str] = field(default=None)
-    wandb_entity: str = field(default="robkirk")
+    wandb_entity: str = field(default="denisj7")
     wandb_watch: bool = field(default=False)
     wandb_tags: Optional[str] = field(default=None)
     resume: str = field(default="allow", metadata={"choices": ["allow", "must", "never"]})

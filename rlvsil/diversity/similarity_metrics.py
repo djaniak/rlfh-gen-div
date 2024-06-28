@@ -16,8 +16,8 @@ import numpy as np
 from transformers import pipeline
 
 # local
-import diversity.metric as metric
-import diversity.utils as utils
+import rlvsil.diversity.metric as metric
+import rlvsil.diversity.utils as utils
 
 
 class CosineSimilarity(metric.SimilarityMetric):

@@ -8,9 +8,9 @@ import sentence_transformers
 from scipy.spatial.distance import cosine
 
 # locals
-import diversity.metric as metric
-import diversity.similarity_metrics as similarity_metrics
-import diversity.utils as utils
+import rlvsil.diversity.metric as metric
+import rlvsil.diversity.similarity_metrics as similarity_metrics
+import rlvsil.diversity.utils as utils
 
 
 class DistinctNgrams(metric.DiversityMetric):

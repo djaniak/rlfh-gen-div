@@ -12,12 +12,12 @@ from abc import ABC, abstractmethod
 
 import hydra
 import torch
-from models.model_creation import construct_model_from_class
+from rlvsil.models.model_creation import construct_model_from_class
 from rouge import Rouge
 from torch import Tensor
 from transformers import AutoModelForSequenceClassification, AutoTokenizer
 
-from evaluation.ni_metrics import (bleu_score, metric_max_over_ground_truths,
+from rlvsil.evaluation.ni_metrics import (bleu_score, metric_max_over_ground_truths,
                                    rouge1_score)
 
 

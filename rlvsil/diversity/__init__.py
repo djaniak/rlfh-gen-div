@@ -11,7 +11,7 @@ import typing as t
 
 import numpy as np
 
-from diversity.diversity_metrics import (
+from rlvsil.diversity.diversity_metrics import (
     AveragedDistinctNgrams, AveragedExpectationAdjustedDistinctNgrams,
     CosineSimilarity2Diversity, NLIFromSim, NLISampleFromSim,
     OpenAiEmbeddingsFromSim, SentBertFromSim)

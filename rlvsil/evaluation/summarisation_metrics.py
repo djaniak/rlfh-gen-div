@@ -12,7 +12,7 @@ import numpy as np
 import wandb
 from transformers import PreTrainedTokenizer
 
-from evaluation.ni_metrics import compute_metrics
+from rlvsil.evaluation.ni_metrics import compute_metrics
 
 TEXT_TABLE_KEY = "text_table"
 

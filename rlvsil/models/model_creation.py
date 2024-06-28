@@ -28,9 +28,9 @@ from transformers.models.opt.modeling_opt import OPTModel
 from transformers.utils.model_parallel_utils import (assert_device_map,
                                                      get_device_map)
 
-from models.llama_parallel import LlamaParallelModel
-from models.opt_parallel import OPTParallelModel
-from models.value_functions import ValueHead
+from rlvsil.models.llama_parallel import LlamaParallelModel
+from rlvsil.models.opt_parallel import OPTParallelModel
+from rlvsil.models.value_functions import ValueHead
 from optimum.bettertransformer import BetterTransformer
 
 __all__ = ["CausalLMOutputWithCrossAttentions", "ValueHead", "make_causal_lm_value_model"]

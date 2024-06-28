@@ -14,8 +14,8 @@ from typing import Any, Dict, Iterable, List, Optional, Tuple, Union
 
 import numpy as np
 import torch
-from core.nest import find_nested, remove_nested
-from evaluation.summarisation_metrics import TEXT_TABLE_KEY
+from rlvsil.core.nest import find_nested, remove_nested
+from rlvsil.evaluation.summarisation_metrics import TEXT_TABLE_KEY
 from packaging import version
 from requests import RequestException
 from torch import nn

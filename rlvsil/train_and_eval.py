@@ -110,7 +110,7 @@ def train(args: Args, training_args: EvalGenerationTrainingArguments):
     if training_args.overwrite_output_dir:
         training_args.output_dir = training_args.overwrite_output_dir + f"/{run_id}"
     else:
-        training_args.output_dir = f"/checkpoint/{os.environ['USER']}/rlvsil/{args.wandb_project}/{run_id}"
+        training_args.output_dir = f"checkpoint/{os.environ['USER']}/rlvsil/{args.wandb_project}/{run_id}"
     training_args.overwrite_output_dir = True
     training_args.report_to = ["wandb"]
     training_args.save_total_limit = training_args.save_total_limit or 5

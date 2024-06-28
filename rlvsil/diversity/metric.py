@@ -13,7 +13,7 @@ from abc import ABC, abstractmethod
 import numpy as np
 
 # locals
-import diversity.utils as utils
+import rlvsil.diversity.utils as utils
 
 global_score_cache = {}
 similarity2diversity_function = lambda sim_score_list: 1 - np.mean(sim_score_list)
