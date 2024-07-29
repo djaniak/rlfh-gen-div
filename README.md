@@ -16,7 +16,8 @@ For SFT: Then install deepspeed with `pip install deepspeed`, and then following
 
 ### Caveats
 
-The code is tightly integrated with Weights&Biases, especially evaluation code. You can either go with this, or adapt the scripts that scrape results from W&B to use your own logging system.
+The code is tightly integrated with Weights&Biases, especially evaluation code. You can either go with this, or adapt the scripts that scrape results from W&B to use your own logging system. 
+To run on WandB you need to change the wandb_entity to your username in `class Args` in `rlvsil/lab/args.py`
 
 All scripts are designed to be run from inside the `rlvsil` folder, so you may need to adjust paths if you run them from elsewhere.
 
@@ -35,16 +36,16 @@ deepspeed --num_gpus=2 train_and_eval.py --dataset summarisation --num_train_epo
 
 Then try this command for RM training
 ```
-python train_summarisation_reward_model.py --wandb_tags train,rm,summarisation,llama --seed 100984844 --num_train_epochs 1 --save_steps 100 --save_total_limit 2 --eval_steps 250 --output_dir --fp16=0 --training_evaluation_batches 100 --validation_evaluation_batches 100 --model_name <path_to_sft_model> --learning_rate 1e-5 --per_device_train_batch_size 1 --per_device_eval_batch_size 1 --gradient_accumulation_steps 8 --freeze_layers 0.8
+python train_summarisation_reward_model.py --wandb_tags train,rm,summarisation,llama --seed 100984844 --num_train_epochs 1 --save_steps 100 --save_total_limit 2 --eval_steps 250 --output_dir . --fp16=0 --training_evaluation_batches 100 --validation_evaluation_batches 100 --model_name <path_to_sft_model> --learning_rate 1e-5 --per_device_train_batch_size 1 --per_device_eval_batch_size 1 --gradient_accumulation_steps 8 --freeze_layers 0.8
 ```
 and for parallel training
 ```
-deepspeed --num_gpus=2 train_summarisation_reward_model.py --wandb_tags train,rm,summarisation,llama --seed 100984844 --num_train_epochs 1 --save_steps 100 --save_total_limit 2 --eval_steps 250 --output_dir --fp16=0 --deepspeed ds_config_3.json --training_evaluation_batches 100 --validation_evaluation_batches 100 --model_name <path_to_sft_model> --learning_rate 1e-5 --per_device_train_batch_size 1 --per_device_eval_batch_size 1 --gradient_accumulation_steps 8 --freeze_layers 0.8
+deepspeed --num_gpus=2 train_summarisation_reward_model.py --wandb_tags train,rm,summarisation,llama --seed 100984844 --num_train_epochs 1 --save_steps 100 --save_total_limit 2 --eval_steps 250 --output_dir . --fp16=0 --deepspeed ds_config_3.json --training_evaluation_batches 100 --validation_evaluation_batches 100 --model_name <path_to_sft_model> --learning_rate 1e-5 --per_device_train_batch_size 1 --per_device_eval_batch_size 1 --gradient_accumulation_steps 8 --freeze_layers 0.8
 ```
 Then try this command for RL training:
 
 ```bash
-accelerate launch experiment_accel.py wandb_tags=[train,rl,summarisation,accelerate] entity=ucl-dark project=rlvsil-main dataset=summarisation reward_function=summarisation freeze_layers=0.8 total_steps=500 discounting=1 ppo_epochs=4 max_new_tokens=48 adap_kl_ctrl=false kl_approx=2 checkpoint_steps=25 checkpoint_limit=2 log_steps=10 evaluation_steps=600 target_eval_datapoints=100 group=12849997-5 seed=128499975 ref_device=cuda:2 rf_device=cuda:2 policy_head_device=cuda:0 policy_split_percentage=0.8 device=cuda:1 log_level=debug model_name=UCL-DARK/sl-llama-6.7b-100ds rollout_batch_size=2 rollout_accumulation_steps=8 learn_batch_size=1 gradient_accumulation_steps=16 adam_learning_rate=1.5e-6 rf_model_dir=UCL-DARK/rm-llama-6.7b-100ds baseline_cost=0.2 init_kl_coef=5.0
+accelerate launch experiment_accel.py wandb_tags=[train,rl,summarisation,accelerate] entity=ucl-dark project=rlvsil-main dataset=summarisation reward_function=summarisation freeze_layers=0.8 total_steps=500 discounting=1 ppo_epochs=4 max_new_tokens=48 adap_kl_ctrl=false kl_approx=2 checkpoint_steps=25 checkpoint_limit=2 log_steps=10 evaluation_steps=600 target_eval_datapoints=100 group=12849997-5 seed=128499975 ref_device=cuda:2 rf_device=cuda:2 policy_head_device=cuda:0 policy_split_percentage=0.8 device=cuda:0 log_level=debug model_name=UCL-DARK/sl-llama-6.7b-100ds rollout_batch_size=2 rollout_accumulation_steps=8 learn_batch_size=1 gradient_accumulation_steps=16 adam_learning_rate=1.5e-6 rf_model_dir=UCL-DARK/rm-llama-6.7b-100ds baseline_cost=0.2 init_kl_coef=5.0
 ```
 
 For best-of-N sampling, use this command:

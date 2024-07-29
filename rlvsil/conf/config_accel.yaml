@@ -80,7 +80,7 @@ use_global_advantage_norm: false
 wandb_run_name:  null
 wandb_tags:  null
 wandb_group:  null
-wandb_entity:  "rlvsil"
+wandb_entity:  "denisj7"
 
 model_dir: null
 model_name: "gpt2"

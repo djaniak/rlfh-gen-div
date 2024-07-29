@@ -40,7 +40,7 @@ class Args:
     wandb_tags: Optional[str] = field(default=None)
     wandb_group: Optional[str] = field(default=None)
     wandb_project: Optional[str] = field(default=None)
-    wandb_entity: Optional[str] = field(default="robkirk")
+    wandb_entity: Optional[str] = field(default="denisj7")
     run_id: Optional[str] = field(default=None)
     model_name: Optional[str] = field(default="gpt2")
     eval_subsample_num: Optional[int] = field(default=None)
@@ -95,7 +95,7 @@ def train_reward_model(args: Args, training_args: RewardFunctionTrainingArgument
         else:
             print("Initializing run")
 
-    training_args.output_dir = f"/checkpoint/{os.environ['USER']}/rlvsil/{args.wandb_project}/{run_id}"
+    training_args.output_dir = f"checkpoint/summarisation_reward_model/{os.environ['USER']}{run_id}"
     training_args.overwrite_output_dir = True
     training_args.evaluation_strategy = "steps"
     training_args.save_total_limit = training_args.save_total_limit or 5
@@ -118,9 +118,9 @@ def train_reward_model(args: Args, training_args: RewardFunctionTrainingArgument
     eval_result_file_name = "eval_results_train.csv"
 
     def compute_metrics(eval_preds):
-        acc_metric = load_metric("accuracy")
-        precision_metric = load_metric("precision")
-        recall_metric = load_metric("recall")
+        acc_metric = load_metric("accuracy", trust_remote_code=True)
+        precision_metric = load_metric("precision", trust_remote_code=True)
+        recall_metric = load_metric("recall", trust_remote_code=True)
         logits, labels = eval_preds
         predictions = np.argmax(logits, axis=-1)
 

@@ -163,7 +163,7 @@ def simulate_bon(
     help="Number of outputs to simulate from wider N for per_input metrics.",
 )
 @click.option("wandb_project", default="rlvsil-main", help="Wandb project to log to.")
-@click.option("wandb_entity", default="ucl-dark", help="Wandb entity to log to.")
+@click.option("wandb_entity", default="denisj7", help="Wandb entity to log to.")
 def main(
     run_ids: t.Optional[str],
     decodes: t.Optional[str],
@@ -180,7 +180,7 @@ def main(
     simulate_bon_for_per_input: t.Optional[int] = None,
     simulate_bon_for_per_input_n_outputs: int = 8,
     wandb_project: str = "rlvsil-main",
-    wandb_entity: str = "ucl-dark",
+    wandb_entity: str = "denisj7",
 ):
     """Calculate diversity metrics for wandb runs and accompanying text tables."""
     if no_table_ids and not (no_overall_input or no_per_input):
